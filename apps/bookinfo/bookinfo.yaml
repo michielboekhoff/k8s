@@ -164,6 +164,8 @@ metadata:
     app: reviews
     version: v1
 spec:
+  securityContext:
+    runAsNonRoot: true
   replicas: 1
   selector:
     matchLabels:
