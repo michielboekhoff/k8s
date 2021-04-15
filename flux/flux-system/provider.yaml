@@ -6,5 +6,6 @@ metadata:
 spec:
   type: discord
   channel: hal-9000
+  username: "HAL-9000"
   secretRef:
     name: discord-webhook
