@@ -1,4 +1,4 @@
-name: conftest
+name: kube-linter
 on: [pull_request]
 jobs:
   conftest:
