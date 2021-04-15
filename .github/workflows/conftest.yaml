@@ -1,0 +1,14 @@
+name: conftest
+on: [pull_request]
+jobs:
+  conftest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: conftest
+        uses: YubicoLabs/action-conftest@v2
+        with:
+          files: apps/
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          gh-comment-url: ${{ github.event.pull_request.comments_url }}
