@@ -1,0 +1,12 @@
+name: conftest
+on: [pull_request]
+jobs:
+  conftest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Run kube-linter
+        uses: michielboekhoff/kube-linter-action@v1
+        with:
+          manifests: apps
