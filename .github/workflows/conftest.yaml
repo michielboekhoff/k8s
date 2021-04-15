@@ -6,9 +6,12 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      - name: conftest
-        uses: YubicoLabs/action-conftest@v2
+      - name: Run Kubernetes tools
+        uses: stefanprodan/kube-tools@v1
         with:
-          files: apps/
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
-          gh-comment-url: ${{ github.event.pull_request.comments_url }}
+          conftest: 0.18.2
+          command: |
+            echo "Run conftest"
+            conftest test apps/
+            echo "Run kubeval"
+            kubeval -d apps/
