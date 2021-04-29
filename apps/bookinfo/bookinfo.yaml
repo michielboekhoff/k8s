@@ -70,6 +70,8 @@ spec:
         version: v1
     spec:
       serviceAccountName: bookinfo-details
+      securityContext:
+        runAsNonRoot: true
       containers:
       - name: details
         image: docker.io/istio/examples-bookinfo-details-v1:1.16.2
