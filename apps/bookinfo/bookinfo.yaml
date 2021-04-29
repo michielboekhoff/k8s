@@ -105,35 +105,6 @@ metadata:
   labels:
     account: ratings
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ratings-v1
-  labels:
-    app: ratings
-    version: v1
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: ratings
-      version: v1
-  template:
-    metadata:
-      labels:
-        app: ratings
-        version: v1
-    spec:
-      serviceAccountName: bookinfo-ratings
-      containers:
-      - name: ratings
-        image: docker.io/istio/examples-bookinfo-ratings-v1:1.16.2
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 9080
-        securityContext:
-          runAsUser: 1000
----
 ##################################################################################################
 # Reviews service
 ##################################################################################################
@@ -166,8 +137,6 @@ metadata:
     app: reviews
     version: v1
 spec:
-  securityContext:
-    runAsNonRoot: true
   replicas: 1
   selector:
     matchLabels:
@@ -179,6 +148,8 @@ spec:
         app: reviews
         version: v1
     spec:
+      securityContext:
+        runAsNonRoot: true
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
@@ -221,6 +192,8 @@ spec:
         app: reviews
         version: v2
     spec:
+      securityContext:
+        runAsNonRoot: true
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
@@ -263,6 +236,8 @@ spec:
         app: reviews
         version: v3
     spec:
+      securityContext:
+        runAsNonRoot: true
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
@@ -329,6 +304,8 @@ spec:
         app: productpage
         version: v1
     spec:
+      securityContext:
+        runAsNonRoot: true
       serviceAccountName: bookinfo-productpage
       containers:
       - name: productpage
